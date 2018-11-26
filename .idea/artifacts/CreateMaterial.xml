@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CreateMaterial">
+    <output-path>$PROJECT_DIR$/out/artifacts/CreateMaterial</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="my.loong.MyMain" />
+        <option name="description" value="" />
+        <option name="height" value="600" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="1.0" />
+        <option name="width" value="680" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CreateMaterial.jar">
+        <element id="module-output" name="CreateMaterial" />
+      </element>
+    </root>
+  </artifact>
+</component>

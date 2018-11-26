@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="164.0" layoutY="22.0" prefHeight="48.0" prefWidth="273.0" text="混凝土构件承载力验算程序">
+         <font>
+            <Font name="SimHei" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="95.0" layoutY="177.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" text="素混凝土" AnchorPane.leftAnchor="95.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="253.0" layoutY="177.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="95.0" text="钢筋混凝土">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="440.0" layoutY="177.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="95.0" text="钢管混凝土" AnchorPane.rightAnchor="95.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="369.0" prefHeight="24.0" prefWidth="206.0" text="武汉理工土木与建筑学院412编制">
+         <font>
+            <Font name="SimHei" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
