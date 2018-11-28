@@ -162,4 +162,20 @@ public class ParameterValue {
         return sb.toString();
     }
 
+
+    public double getStrain() {
+        return strain;
+    }
+
+    public void setStrain(double strain) {
+        this.strain = strain;
+    }
+
+    public double getStress() {
+        return stress;
+    }
+
+    public void setStress(double stress) {
+        this.stress = stress;
+    }
 }

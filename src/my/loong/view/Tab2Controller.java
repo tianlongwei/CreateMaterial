@@ -10,9 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import my.loong.commons.Ding_Yu_Method;
-import my.loong.commons.GB50010_2010_Method;
-import my.loong.commons.ModifiedStress_Strain_ParameterValues;
+import my.loong.commons.*;
 import my.loong.model.ParameterValue;
 
 import java.io.*;
@@ -69,14 +67,27 @@ public class Tab2Controller {
 
     @FXML
     private void radio_GB50010_2010_method_clicked(){
+        clearText();
         radio_GB50010_2010_method.setSelected(true);
         radio_dingyu_method.setSelected(false);
+        radio_guozhenhai_method.setSelected(false);
+
+
+        hanlinhai_method_show(false);
+        guozhenhai_method_show(false);
     }
     @FXML
     private void radio_dingyu_method_clicked(){
+        clearText();
         radio_dingyu_method.setSelected(true);
         radio_GB50010_2010_method.setSelected(false);
+        radio_guozhenhai_method.setSelected(false);
+
+        hanlinhai_method_show(false);
+        guozhenhai_method_show(false);
     }
+
+
 
     /***********************************************************/
     /**********************选择强度代表值*************************/
@@ -92,14 +103,18 @@ public class Tab2Controller {
     private void radio_strength_standardValue_clickled(){
         radio_strength_standardValue.setSelected(true);
         radio_strength_averageValue.setSelected(false);
-        radio_fcuk.setText("初始刚度来源于Fcuk");
+        if (radio_GB50010_2010_method.isSelected() || radio_dingyu_method.isSelected()){
+            radio_fcuk.setText("初始刚度来源于Fcuk");
+        }
     }
 
     @FXML
     private void radio_strength_averageValue_clickled(){
         radio_strength_averageValue.setSelected(true);
         radio_strength_standardValue.setSelected(false);
-        radio_fcuk.setText("初始刚度来源于Fcum");
+        if (radio_GB50010_2010_method.isSelected() || radio_dingyu_method.isSelected()){
+            radio_fcuk.setText("初始刚度来源于Fcum");
+        }
     }
 
     /***********************************************************/
@@ -113,6 +128,8 @@ public class Tab2Controller {
     private RadioButton radio_Ec0;
     @FXML
     private TextField text_Ec0;
+    @FXML
+    private Label label_attention1;
     @FXML
     private void radio_fcuk_clicked(){
         radio_fcuk.setSelected(true);
@@ -158,12 +175,16 @@ public class Tab2Controller {
     }
 
     /***********************************************************/
-    /**********************选择损本构****************************/
+    /**********************选择本构******************************/
     /***********************************************************/
+    @FXML
+    private Label label_bengou;
     @FXML
     private RadioButton radio_real;//真实本构
     @FXML
     private RadioButton radio_engeneer;//工程本构
+    @FXML
+    private Label label_attentin2;
 
     @FXML
     private void radio_real_clicked(){
@@ -180,6 +201,8 @@ public class Tab2Controller {
     /***********************************************************/
     /**********************ABAQUS屈服弹性模量Ec确定方法************/
     /***********************************************************/
+    @FXML
+    private Label label_abaqus;
     @FXML
     private RadioButton radio_Ec_origanl;//初始弹性模量
     @FXML
@@ -222,14 +245,234 @@ public class Tab2Controller {
     @FXML
     private TextField text_fcur;//强度代表值
 
+    /***********************************************************/
+    /**********************屈服点应力系数*************************/
+    /***********************************************************/
+    @FXML
+    private Label label_eta;
     @FXML
     private TextField text_eta;//屈服点应力系数
 
+    /***********************************************************/
+    /**********************轴心受拉强度**************************/
+    /***********************************************************/
+    @FXML
+    private Label label_zhouxin;
+    @FXML
+    private Label label_Ftr;
+    @FXML
+    private Label label_tr;
     @FXML
     private TextField text_ftr;//单轴抗拉强度代表值
     @FXML
     private TextField text_tr;//峰值拉应变
 
+    /***********************************************************/
+    /**********************增加两种方法生成本构曲线****************/
+    /***********************************************************/
+    @FXML
+    private Label label_Fcr;//单轴抗压强度代表值Fcr
+    @FXML
+    private Label label_Ec;//屈服弹性模量Ec
+    @FXML
+    private Label label_Ec0;//初始弹性模量Ec0
+    @FXML
+    private Label label_epsilon_cr;//峰值压应变ε cr
+    @FXML
+    private Label label_fcur;//强度代表值fcur
+
+    @FXML
+    private RadioButton radio_hanlinhai_method;//韩林海方法
+    @FXML
+    private RadioButton radio_guozhenhai_method;//过振海方法
+
+    @FXML
+    private void radio_hanlinhai_method_clicked(){
+        clearText();
+        //不需要元素不显示
+        guozhenhai_method_show(false);
+        hanlinhai_method_show(true);//关闭不用显示的内容
+    }
+
+    @FXML
+    private void radio_guozhenhai_method_clicked(){
+        clearText();
+        guozhenhai_method_show(true);
+
+    }
+
+
+    //韩海林方法内容显示
+    private void hanlinhai_method_show(boolean ishowHanhailin){
+
+        if (ishowHanhailin){
+            //选择逻辑
+            radio_hanlinhai_method.setSelected(true);
+            radio_dingyu_method.setSelected(false);
+            radio_GB50010_2010_method.setSelected(false);
+            radio_guozhenhai_method.setSelected(false);
+
+            label_Fcr.setText("半圆区直径（mm）：");//单轴抗压强度代表值Fcr
+            label_Ec.setText("钢管厚度（mm）：");//屈服弹性模量Ec
+            label_Ec0.setText("钢筋屈服强度：");//初始弹性模量Ec0
+            label_epsilon_cr.setText("钢管混凝土长度:");//峰值压应变ε cr
+            label_fcur.setText("混凝土强度等级:");//强度代表值fcur
+            //text_fcur.setText();
+            //label_fcur.setVisible(false);
+            //text_fcur.setVisible(false);
+
+            //增加形状选择
+            label_strength_value.setText("选择截面形状");//选择强度代表值
+            radio_strength_standardValue.setText("矩形截面");//标准值
+            radio_strength_averageValue.setText("圆形截面");//平均值
+        }else {
+            label_fcur.setVisible(true);
+            text_fcur.setVisible(true);
+
+            label_Fcr.setText("单轴抗压强度代表值Fcr:");//单轴抗压强度代表值Fcr：
+            label_Ec.setText("屈服弹性模量Ec:");//屈服弹性模量Ec：
+            label_Ec0.setText("初始弹性模量Ec0:");//初始弹性模量Ec0：
+            label_epsilon_cr.setText("峰值压应变εcr:");//峰值压应变ε cr
+            label_fcur.setText("强度代表值fcur:");//强度代表值fcur
+
+            //增加形状选择
+            label_strength_value.setText("选择强度代表值");//选择强度代表值
+            radio_strength_standardValue.setText("标准值");//标准值
+            radio_strength_averageValue.setText("平均值");//平均值
+
+            radio_hanlinhai_method.setSelected(false);
+        }
+
+        label_source_fcuk.setDisable(ishowHanhailin);
+        radio_fcuk.setDisable(ishowHanhailin);
+        radio_Ec0.setDisable(ishowHanhailin);
+        text_Ec0.setDisable(ishowHanhailin);
+
+        label_zhouxin.setDisable(ishowHanhailin);
+        label_Ftr.setDisable(ishowHanhailin);
+        label_tr.setDisable(ishowHanhailin);
+        text_ftr.setDisable(ishowHanhailin);
+        text_tr.setDisable(ishowHanhailin);
+
+        label_demage_cal_method.setDisable(ishowHanhailin);
+        radio_demage_enger_balance.setDisable(ishowHanhailin);
+        radio_demage_tuxing.setDisable(ishowHanhailin);
+        radio_demage_GB50010_2010_method.setDisable(ishowHanhailin);
+
+        label_bengou.setDisable(ishowHanhailin);
+        radio_real.setDisable(ishowHanhailin);
+        radio_engeneer.setDisable(ishowHanhailin);
+
+        label_eta.setDisable(ishowHanhailin);
+        text_eta.setDisable(ishowHanhailin);
+
+        label_abaqus.setDisable(ishowHanhailin);
+        radio_Ec_origanl.setDisable(ishowHanhailin);
+        radio_Ec_gexian.setDisable(ishowHanhailin);
+        radio_Ec_userDetermined.setDisable(ishowHanhailin);
+        text_Ec_userDetermined.setDisable(ishowHanhailin);
+
+        //
+        button_1.setDisable(ishowHanhailin);
+        button_2.setDisable(ishowHanhailin);
+        button_3.setDisable(ishowHanhailin);
+        button_4.setDisable(ishowHanhailin);
+        button_5.setDisable(ishowHanhailin);
+        button_6.setDisable(ishowHanhailin);
+
+        //
+        label_attention1.setDisable(ishowHanhailin);
+        label_attentin2.setDisable(ishowHanhailin);
+        label_shouyabengou.setDisable(ishowHanhailin);
+        label_shoulabengou.setDisable(ishowHanhailin);
+    }
+
+
+    //过振海方法界面显示内容
+    private void guozhenhai_method_show(boolean ishowGuozhengai){
+        //选择逻辑
+        if (ishowGuozhengai){
+            radio_guozhenhai_method.setSelected(true);
+            radio_dingyu_method.setSelected(false);
+            radio_GB50010_2010_method.setSelected(false);
+            radio_hanlinhai_method.setSelected(false);
+        }else {
+            radio_guozhenhai_method.setSelected(false);
+        }
+//        radio_dingyu_method.setSelected(false);
+//        radio_GB50010_2010_method.setSelected(false);
+//        radio_hanlinhai_method.setSelected(false);
+
+        //
+        label_source_fcuk.setDisable(ishowGuozhengai);
+        radio_fcuk.setDisable(ishowGuozhengai);
+        radio_Ec0.setDisable(ishowGuozhengai);
+        text_Ec0.setDisable(ishowGuozhengai);
+
+        label_zhouxin.setDisable(ishowGuozhengai);
+        label_Ftr.setDisable(ishowGuozhengai);
+        label_tr.setDisable(ishowGuozhengai);
+        text_ftr.setDisable(ishowGuozhengai);
+        text_tr.setDisable(ishowGuozhengai);
+
+        label_demage_cal_method.setDisable(ishowGuozhengai);
+        radio_demage_enger_balance.setDisable(ishowGuozhengai);
+        radio_demage_tuxing.setDisable(ishowGuozhengai);
+        radio_demage_GB50010_2010_method.setDisable(ishowGuozhengai);
+
+        label_bengou.setDisable(ishowGuozhengai);
+        radio_real.setDisable(ishowGuozhengai);
+        radio_engeneer.setDisable(ishowGuozhengai);
+
+        label_eta.setDisable(ishowGuozhengai);
+        text_eta.setDisable(ishowGuozhengai);
+
+        label_abaqus.setDisable(ishowGuozhengai);
+        radio_Ec_origanl.setDisable(ishowGuozhengai);
+        radio_Ec_gexian.setDisable(ishowGuozhengai);
+        radio_Ec_userDetermined.setDisable(ishowGuozhengai);
+        text_Ec_userDetermined.setDisable(ishowGuozhengai);
+
+        //
+        button_1.setDisable(ishowGuozhengai);
+        button_2.setDisable(ishowGuozhengai);
+        button_3.setDisable(ishowGuozhengai);
+        button_4.setDisable(ishowGuozhengai);
+        button_5.setDisable(ishowGuozhengai);
+        button_6.setDisable(ishowGuozhengai);
+
+        //增加过振海方法不显示内容
+        label_strength_value.setDisable(ishowGuozhengai);
+        radio_strength_standardValue.setDisable(ishowGuozhengai);
+        radio_strength_averageValue.setDisable(ishowGuozhengai);
+
+        label_Fcr.setDisable(ishowGuozhengai);
+        text_fcr.setDisable(ishowGuozhengai);
+
+        label_Ec.setDisable(ishowGuozhengai);
+        text_ec.setDisable(ishowGuozhengai);
+
+        label_Ec0.setDisable(ishowGuozhengai);
+        text_ec0.setDisable(ishowGuozhengai);
+
+        label_epsilon_cr.setDisable(ishowGuozhengai);
+        text_cr.setDisable(ishowGuozhengai);
+
+        label_attention1.setDisable(ishowGuozhengai);
+        label_attentin2.setDisable(ishowGuozhengai);
+        label_shouyabengou.setDisable(ishowGuozhengai);
+        label_shoulabengou.setDisable(ishowGuozhengai);
+    }
+
+    public void clearText(){
+        text_fcr.setText("");
+        text_ec.setText("");
+        text_ec0.setText("");
+        text_cr.setText("");
+        text_fcur.setText("");
+        text_ftr.setText("");
+        text_tr.setText("");
+    }
 
 
     /***********************************************************/
@@ -303,6 +546,94 @@ public class Tab2Controller {
                 e.printStackTrace();
             }
         }
+
+
+        //处理韩林海方法
+        if (radio_hanlinhai_method.isSelected()){
+            double D=0;
+            double t=0;
+            double B = 0;
+            double fy=0;
+            double fcu=0;
+            try {
+                D=Double.valueOf(text_fcr.getText());
+                t=Double.valueOf(text_ec.getText());
+                B=Double.valueOf(text_cr.getText());
+                fy=Double.valueOf(text_ec0.getText());
+                fcu=Double.valueOf(text_fcur.getText());
+            }catch (Exception e){
+                MessageBox.showBox("请输入合法的参数值");
+                return;
+            }
+
+            //设置参数
+            Han_Lin_Hai_Method.setFcu(fcu);//立方体轴心抗压强度边坡准直
+            Han_Lin_Hai_Method.setB(B);
+            Han_Lin_Hai_Method.setD(D);
+            Han_Lin_Hai_Method.setT(t);
+            Han_Lin_Hai_Method.setFy(fy);
+
+            //获取数据
+            SortedMap<Integer, ParameterValue> map=new TreeMap<>();
+            map=Han_Lin_Hai_Method.GetStrain_stress(true);
+            if (radio_strength_standardValue.isSelected()){
+                map=Han_Lin_Hai_Method.GetStrain_stress(true);
+            }else if (radio_strength_averageValue.isSelected()){
+                map=Han_Lin_Hai_Method.GetStrain_stress(false);
+            }
+
+            for (Map.Entry<Integer,ParameterValue> aa:map.entrySet()){
+                System.out.println(aa.getValue().getStrain()+":"+aa.getValue().getStress());
+            }
+
+            //在pane中显示图表
+            removeSeries();
+            lineChart.setCreateSymbols(false);//不显示节点符号
+            XYChart.Series series = new XYChart.Series();
+            series.setName("stress-strain");//设置图形名称
+            for (Map.Entry<Integer,ParameterValue> aa:map.entrySet()) {
+                series.getData().add(new XYChart.Data(aa.getValue().strain * 1000, aa.getValue().stress));
+            }
+            lineChart.getData().add(series);
+
+            return;
+        }
+
+        //处理过振海方法
+        if (radio_guozhenhai_method.isSelected()){
+            double fcu=0;
+            if (text_fcur.getText().equals("")){
+                text_fcur.setText(String.valueOf(fcuk));
+                fcu=fcuk;
+            }else {
+                try {
+                    fcu=Double.valueOf(text_fcur.getText());
+                }catch (Exception e){
+                    MessageBox.showBox("输入参数有误");
+                    return;
+                }
+            }
+
+            Guo_Zhen_Hai_Method.setFcu(fcu);
+
+            SortedMap<Integer,ParameterValue> strain_stress= Guo_Zhen_Hai_Method.getStrain_stress();
+            for (Map.Entry<Integer,ParameterValue> aa:strain_stress.entrySet()){
+                System.out.println(aa.getValue().getStrain()+":"+aa.getValue().getStress());
+            }
+
+            removeSeries();
+            lineChart.setCreateSymbols(false);//不显示节点符号
+            XYChart.Series series = new XYChart.Series();
+            series.setName("stress-strain");//设置图形名称
+            for (Map.Entry<Integer,ParameterValue> aa:strain_stress.entrySet()) {
+                series.getData().add(new XYChart.Data(aa.getValue().strain * 1000, aa.getValue().stress));
+            }
+            lineChart.getData().add(series);
+
+            return;
+
+        }
+
 
         //
         //计算本构参数
@@ -541,35 +872,12 @@ public class Tab2Controller {
         }
 
         //System.out.println(csv);
-
-        BufferedWriter writer=null;
-        try {
-            writer=new BufferedWriter(new FileWriter(comp));
-            writer.write(title);
-
-            for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Comp.entrySet()) {
-                //System.out.println(aa.getValue().strain * 1000+":"+aa.getValue().stress);
-                writer.write(aa.getValue().ToWriteAll2CSV());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            MessageBox.showBox("写入数据到文件失败，可能是该文件已经打开");
-        }finally {
-            try {
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
         BufferedWriter writerten=null;
         try {
             writerten=new BufferedWriter(new FileWriter(ten));
             writerten.write(title);
 
             for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Ten.entrySet()) {
-                //System.out.println(aa.getValue().strain * 1000+":"+aa.getValue().stress);
                 writerten.write(aa.getValue().ToWriteAll2CSV());
             }
 
@@ -590,14 +898,31 @@ public class Tab2Controller {
     /***********************************************************/
     @FXML
     private Pane pane;
+    @FXML
+    private Label label_shouyabengou;
+    @FXML
+    private Label label_shoulabengou;
+
+    @FXML
+    private Button button_1;//应力应变曲线
+    @FXML
+    private Button button_2;//应力应变曲线
+    @FXML
+    private Button button_3;//应力应变曲线
+    @FXML
+    private Button button_4;//应力应变曲线
+    @FXML
+    private Button button_5;//应力应变曲线
+    @FXML
+    private Button button_6;//应力应变曲线
 
     NumberAxis xAxis = new NumberAxis();
     NumberAxis yAxis = new NumberAxis();
     //xAxis.setLabel("stress-strain_Comp");//x坐标标签
     //creating the chart
-    LineChart<Number,Number> lineChart =
-            new LineChart<Number,Number>(xAxis,yAxis);
+    LineChart<Number,Number> lineChart =new LineChart<Number,Number>(xAxis,yAxis);
 
+    //移除已经加载的图形
     public void removeSeries(){
         ObservableList<XYChart.Series<Number,Number>> data=lineChart.getData();
         if (data!=null && data.size()>0){
@@ -610,72 +935,36 @@ public class Tab2Controller {
     @FXML
     private void show_stress_strain_Comp_Chart(){
         removeSeries();
-        //lineChart.setTitle("stress-strain_Comp");//设置主题
         lineChart.setCreateSymbols(false);//不显示节点符号
-        //defining a series
         XYChart.Series series = new XYChart.Series();
         series.setName("stress-strain_Comp");//设置图形名称
-
-        //populating the series with data
         for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Comp.entrySet()) {
             series.getData().add(new XYChart.Data(aa.getValue().strain * 1000, aa.getValue().stress));
         }
-        //series.getData().add(new XYChart.Data(1, 23));
-       // lineChart.setPrefWidth(270);
-       // lineChart.setPrefHeight(220);
         lineChart.getData().add(series);
-        //pane.getChildren().add(lineChart);
     }
 
 
     @FXML
     private void show_Stress_StrainInElastic_Comp_Chart(){
         removeSeries();
-        //xAxis.setLabel("stress-strain_Comp");//x坐标标签
-        //creating the chart
-        //lineChart.setTitle("stress-strain_Comp");//设置主题
         lineChart.setCreateSymbols(false);//不显示节点符号
-        //defining a series
         XYChart.Series series = new XYChart.Series();
         series.setName("Stress_StrainInElastic_Comp");//设置图形名称
-        //populating the series with data
         for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Comp.entrySet()) {
             series.getData().add(new XYChart.Data(aa.getValue().strain_InElastic * 1000, aa.getValue().stress));
         }
-        //series.getData().add(new XYChart.Data(1, 23));
         lineChart.getData().add(series);
     }
 
     @FXML
     private void show_Damage_Strain_InElastic_Comp_Chart(){
         removeSeries();
-        //xAxis.setLabel("stress-strain_Comp");//x坐标标签
-        //creating the chart
-
-        //lineChart.setTitle("stress-strain_Comp");//设置主题
         lineChart.setCreateSymbols(false);//不显示节点符号
-        //defining a series
         XYChart.Series series = new XYChart.Series();
         series.setName("Damage_Strain_InElastic_Comp");//设置图形名称
-        //populating the series with data
         for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Comp.entrySet()) {
             series.getData().add(new XYChart.Data(aa.getValue().strain_InElastic * 1000, aa.getValue().damage));
-        }
-        //series.getData().add(new XYChart.Data(1, 23));
-        //lineChart.setPrefWidth(270);
-        //lineChart.setPrefHeight(220);
-        lineChart.getData().add(series);
-        //pane.getChildren().add(lineChart);
-    }
-
-    @FXML
-    private void show_Strain_Plastic_Strain_Comp_Chart(){
-        removeSeries();
-        lineChart.setCreateSymbols(false);//不显示节点符号
-        XYChart.Series series = new XYChart.Series();
-        series.setName("Strain_Plastic_Strain_Comp");//设置图形名称
-        for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Comp.entrySet()) {
-            series.getData().add(new XYChart.Data(aa.getValue().strain * 1000, aa.getValue().strain_Plastic));
         }
         lineChart.getData().add(series);
     }
@@ -697,41 +986,25 @@ public class Tab2Controller {
     @FXML
     private void show_Stress_StrainInElastic_Ten_Chart(){
         removeSeries();
-        //xAxis.setLabel("stress-strain_Comp");//x坐标标签
-        //creating the chart
-        //lineChart.setTitle("stress-strain_Comp");//设置主题
         lineChart.setCreateSymbols(false);//不显示节点符号
-        //defining a series
         XYChart.Series series = new XYChart.Series();
         series.setName("Stress_StrainInElastic_Ten");//设置图形名称
-        //populating the series with data
         for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Ten.entrySet()) {
             series.getData().add(new XYChart.Data(aa.getValue().strain_InElastic * 1000, aa.getValue().stress));
         }
-        //series.getData().add(new XYChart.Data(1, 23));
         lineChart.getData().add(series);
     }
 
     @FXML
     private void show_Damage_Strain_InElastic_Ten_Chart(){
         removeSeries();
-        //xAxis.setLabel("stress-strain_Comp");//x坐标标签
-        //creating the chart
-
-        //lineChart.setTitle("stress-strain_Comp");//设置主题
         lineChart.setCreateSymbols(false);//不显示节点符号
-        //defining a series
         XYChart.Series series = new XYChart.Series();
         series.setName("Damage_Strain_InElastic_Ten");//设置图形名称
-        //populating the series with data
         for (Map.Entry<Integer,ParameterValue> aa:stress_strain_Ten.entrySet()) {
             series.getData().add(new XYChart.Data(aa.getValue().strain_InElastic * 1000, aa.getValue().damage));
         }
-        //series.getData().add(new XYChart.Data(1, 23));
-        //lineChart.setPrefWidth(270);
-        //lineChart.setPrefHeight(220);
         lineChart.getData().add(series);
-        //pane.getChildren().add(lineChart);
     }
 
 

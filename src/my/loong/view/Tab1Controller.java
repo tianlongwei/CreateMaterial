@@ -699,11 +699,11 @@ public class Tab1Controller {
         value=String.valueOf(fcuk);
         sb.append(key+value+"\r\n");
 
-        key="抗压强度标准值fck：";
+        key="轴心抗压强度标准值fck：";
         value=String.valueOf(fck);
         sb.append(key+value+"\r\n");
 
-        key="抗拉强度标准值ftk：";
+        key="轴心抗拉强度标准值ftk：";
         value=String.valueOf(ftk);
         sb.append(key+value+"\r\n");
 
@@ -711,11 +711,11 @@ public class Tab1Controller {
         value=String.valueOf(fcum);
         sb.append(key+value+"\r\n");
 
-        key="立方体抗压强度平均值fcm：";
+        key="轴心抗压强度平均值fcm：";
         value=String.valueOf(fcm);
         sb.append(key+value+"\r\n");
 
-        key="立方体抗压强度平均值ftm：";
+        key="轴心抗拉强度平均值ftm：";
         value=String.valueOf(ftm);
         sb.append(key+value+"\r\n");
         sb.append("*********************其他参数来源*********************\r\n");
