@@ -23,6 +23,9 @@ public class RootLayoutController {
     private Button exited;
     private MyMain myMain;
 
+    //用户统计页数信息
+    int index=2;
+
     public void setMyMain(MyMain myMain){
         this.myMain=myMain;
     }
@@ -30,15 +33,38 @@ public class RootLayoutController {
 
     @FXML
     private void handledNext() throws MalformedURLException {
-//        next.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        index++;
+//        if (index==2){
 //            myMain.showTab2();
-//        });
-        myMain.showTab2();
+//        }
+        if (index==3){
+            myMain.showTab3();
+            return;
+        }
+        if (index>3){
+            MessageBox.showBox("已经是最后一页内容");
+            index=3;
+        }
+
+
     }
 
     @FXML
     private void handledPrivous(){
-        myMain.showTab1();
+        index--;
+//        if (index==1){
+//            myMain.showTab1();
+//            return;
+//        }
+        System.out.println(index);
+        if (index==2){
+            myMain.showTab2();
+            return;
+        }
+        if (index<2){
+            MessageBox.showBox("已经是第一页内容");
+            index=2;
+        }
     }
 
     @FXML

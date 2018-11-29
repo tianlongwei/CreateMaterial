@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.Page1Controller">
    <children>
       <Label layoutX="164.0" layoutY="22.0" prefHeight="48.0" prefWidth="273.0" text="混凝土构件承载力验算程序">
          <font>
@@ -24,7 +24,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="440.0" layoutY="177.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="95.0" text="钢管混凝土" AnchorPane.rightAnchor="95.0">
+      <Button fx:id="button_3" layoutX="440.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#button_3_cliocked" prefHeight="32.0" prefWidth="95.0" text="钢管混凝土" AnchorPane.rightAnchor="95.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.Tab3Controller">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="530.0" layoutX="390.0" layoutY="2.0" stroke="#b2adad" strokeType="INSIDE" width="287.0" />
+      <Label layoutX="395.0" layoutY="7.0" prefHeight="15.0" prefWidth="113.0" text="计算本构曲线参数">
+         <font>
+            <Font name="SimHei" size="14.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="106.0" layoutX="3.0" layoutY="2.0" stroke="#b2adad" strokeType="INSIDE" width="382.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="82.0" layoutX="243.0" layoutY="22.0" stroke="#b2adad" strokeType="INSIDE" width="126.0" />
+      <Label fx:id="label_strength_value" layoutX="247.0" layoutY="24.0" prefHeight="15.0" prefWidth="88.0" text="选择强度代表值">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font></Label>
+      <RadioButton fx:id="radio_strength_standardValue" layoutX="250.0" layoutY="45.0" mnemonicParsing="false" onAction="#radio_strength_standardValue_clickled" text="标准值" />
+      <RadioButton fx:id="radio_strength_averageValue" layoutX="250.0" layoutY="63.0" mnemonicParsing="false" onAction="#radio_strength_averageValue_clickled" text="平均值" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="82.0" layoutX="9.0" layoutY="21.0" stroke="#b2adad" strokeType="INSIDE" width="229.0" />
+      <Label fx:id="label_calMethod" layoutX="12.0" layoutY="24.0" prefHeight="15.0" prefWidth="75.0" text="选择计算方法">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font></Label>
+      <RadioButton fx:id="radio_GB50010_2010_method" layoutX="15.0" layoutY="41.0" mnemonicParsing="false" onAction="#radio_GB50010_2010_method_clicked" text="GB50010-2010(&lt;=C60)" />
+      <RadioButton fx:id="radio_dingyu_method" layoutX="15.0" layoutY="59.0" mnemonicParsing="false" onAction="#radio_dingyu_method_clicked" text="丁发兴-余志武方法(&lt;=C140)" />
+      <Label layoutX="16.0" layoutY="4.0" prefHeight="15.0" prefWidth="57.0" text="本构参数">
+         <font>
+            <Font name="SimHei" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_ok" layoutX="3.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#handled_buttton_cal" prefHeight="46.0" prefWidth="382.0" text="计算">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <RadioButton fx:id="radio_notConsidered1" layoutX="138.0" layoutY="151.0" mnemonicParsing="false" text="不考虑" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="82.0" layoutX="3.0" layoutY="112.0" stroke="#b2adad" strokeType="INSIDE" width="382.0" />
+      <TextField fx:id="text_Ec0" layoutX="237.0" layoutY="159.0" prefHeight="23.0" prefWidth="69.0" />
+      <RadioButton fx:id="radio_Ec0" layoutX="20.0" layoutY="163.0" mnemonicParsing="false" onAction="#radio_Ec0_clicked" text="初始刚度来源于定义 Ec0(N/mm²):" />
+      <RadioButton fx:id="radio_fcuk" layoutX="20.0" layoutY="141.0" mnemonicParsing="false" onAction="#radio_fcuk_clicked" text="初始刚度来源于Fcuk" />
+      <Label fx:id="label_source_fcuk" layoutX="9.0" layoutY="116.0" prefHeight="15.0" prefWidth="113.0" text="选择初始刚度来源">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="82.0" layoutX="402.0" layoutY="30.0" stroke="#b2adad" strokeType="INSIDE" width="146.0" />
+      <RadioButton fx:id="radio_demage_enger_balance" layoutX="409.0" layoutY="53.0" mnemonicParsing="false" onAction="#radio_demage_enger_balance_clicked" text="能量等效原理" />
+      <RadioButton fx:id="radio_demage_tuxing" layoutX="409.0" layoutY="71.0" mnemonicParsing="false" onAction="#radio_demage_tuxing_clicked" text="图解法" />
+      <Label fx:id="label_demage_cal_method" layoutX="407.0" layoutY="33.0" prefHeight="15.0" prefWidth="103.0" text="选择损伤计算方法">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="radio_demage_GB50010_2010_method" layoutX="409.0" layoutY="90.0" mnemonicParsing="false" onAction="#radio_demage_GB50010_2010_method_clicked" text="GB50010-2010方法" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="82.0" layoutX="555.0" layoutY="30.0" stroke="#b2adad" strokeType="INSIDE" width="113.0" />
+      <Label fx:id="label_bengou" layoutX="555.0" layoutY="32.0" prefHeight="15.0" prefWidth="88.0" text="选择本构">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="radio_engeneer" layoutX="560.0" layoutY="72.0" mnemonicParsing="false" onAction="#radio_engeneer_clicked" text="工程本构" />
+      <RadioButton fx:id="radio_real" layoutX="560.0" layoutY="54.0" mnemonicParsing="false" onAction="#radio_real_clicked" text="真实本构" />
+      <Label fx:id="label_attentin2" layoutX="563.0" layoutY="94.0" prefHeight="15.0" prefWidth="88.0" text="（按照默认即可）" textFill="#b20707">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="60.0" layoutX="404.0" layoutY="125.0" stroke="#b2adad" strokeType="INSIDE" width="263.0" />
+      <Label fx:id="label_eta" layoutX="407.0" layoutY="129.0" prefHeight="15.0" prefWidth="163.0" text="屈服点应力系数η=σ_e/fcr:">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="text_eta" layoutX="425.0" layoutY="151.0" prefHeight="23.0" prefWidth="229.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="93.0" layoutX="404.0" layoutY="202.0" stroke="#b2adad" strokeType="INSIDE" width="263.0" />
+      <Label fx:id="label_abaqus" layoutX="407.0" layoutY="207.0" prefHeight="15.0" prefWidth="176.0" text="ABAQUS屈服弹性模量Ec确定方法">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="radio_Ec_userDetermined" layoutX="409.0" layoutY="266.0" mnemonicParsing="false" onAction="#radio_Ec_userDetermined_clicked" text="用户指定:" />
+      <RadioButton fx:id="radio_Ec_gexian" layoutX="409.0" layoutY="247.0" mnemonicParsing="false" onAction="#radio_Ec_gexian_clicked" text="屈服点割线模量" />
+      <RadioButton fx:id="radio_Ec_origanl" layoutX="409.0" layoutY="229.0" mnemonicParsing="false" onAction="#radio_Ec_origanl_clicked" text="初始弹性模量" />
+      <TextField fx:id="text_Ec_userDetermined" layoutX="485.0" layoutY="265.0" prefHeight="23.0" prefWidth="163.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="54.0" layoutX="3.0" layoutY="302.0" stroke="#b2adad" strokeType="INSIDE" width="382.0" />
+      <TextField fx:id="text_tr" layoutX="299.0" layoutY="326.0" prefHeight="23.0" prefWidth="75.0" />
+      <Label fx:id="label_tr" layoutX="213.0" layoutY="329.0" prefHeight="15.0" prefWidth="88.0" text="峰值拉应变ε tr:" />
+      <Label fx:id="label_zhouxin" layoutX="18.0" layoutY="303.0" prefHeight="18.0" prefWidth="88.0" text="轴心受拉参数" wrapText="true">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_Ftr" layoutX="9.0" layoutY="328.0" prefHeight="15.0" prefWidth="134.0" text="单轴抗拉强度代表值Ftr:" />
+      <TextField fx:id="text_ftr" layoutX="140.0" layoutY="325.0" prefHeight="23.0" prefWidth="69.0" />
+      <Label fx:id="label_attention1" layoutX="157.0" layoutY="142.0" text="（一般情况下建议选此项）" textFill="#e12c2c">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="121.0" layoutX="2.0" layoutY="411.0" stroke="#b2adad" strokeType="INSIDE" width="146.0" />
+      <Label fx:id="label_shouyabengou" layoutX="6.0" layoutY="415.0" prefHeight="18.0" prefWidth="88.0" text="受压本构图形" wrapText="true">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_1" layoutX="7.0" layoutY="438.0" mnemonicParsing="false" onMouseClicked="#show_stress_strain_Comp_Chart" prefHeight="23.0" prefWidth="136.0" text="应力应变曲线" />
+      <Button fx:id="button_2" layoutX="7.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#show_Stress_StrainInElastic_Comp_Chart" prefHeight="23.0" prefWidth="136.0" text="非弹性应力应变曲线" />
+      <Button fx:id="button_3" layoutX="7.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#show_Damage_Strain_InElastic_Comp_Chart" prefHeight="23.0" prefWidth="136.0" text="塑性损伤模型曲线" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="121.0" layoutX="152.0" layoutY="411.0" stroke="#b2adad" strokeType="INSIDE" width="146.0" />
+      <Label fx:id="label_shoulabengou" layoutX="155.0" layoutY="415.0" prefHeight="18.0" prefWidth="88.0" text="受拉本构图形" wrapText="true">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_4" layoutX="158.0" layoutY="437.0" mnemonicParsing="false" onMouseClicked="#show_stress_strain_Ten_Chart" prefHeight="23.0" prefWidth="136.0" text="应力应变曲线" />
+      <Button fx:id="button_5" layoutX="158.0" layoutY="467.0" mnemonicParsing="false" onMouseClicked="#show_Stress_StrainInElastic_Ten_Chart" prefHeight="23.0" prefWidth="136.0" text="非弹性应力应变曲线" />
+      <Button fx:id="button_6" layoutX="158.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#show_Damage_Strain_InElastic_Ten_Chart" prefHeight="23.0" prefWidth="136.0" text="塑性损伤模型曲线" />
+      <RadioButton fx:id="radio_hanlinhai_method" layoutX="15.0" layoutY="78.0" mnemonicParsing="false" onAction="#radio_hanlinhai_method_clicked" text="韩林海方法" />
+      <RadioButton fx:id="radio_guozhenhai_method" layoutX="108.0" layoutY="79.0" mnemonicParsing="false" onAction="#radio_guozhenhai_method_clicked" text="过振海方法" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="99.0" layoutX="3.0" layoutY="198.0" stroke="#b2adad" strokeType="INSIDE" width="382.0" />
+      <TextField fx:id="text_ec0" layoutX="139.0" layoutY="270.0" prefHeight="23.0" prefWidth="69.0" />
+      <TextField fx:id="text_ec" layoutX="139.0" layoutY="246.0" prefHeight="23.0" prefWidth="69.0" />
+      <TextField fx:id="text_fcr" layoutX="139.0" layoutY="222.0" prefHeight="23.0" prefWidth="69.0" />
+      <Label fx:id="label_Ec0" layoutX="8.0" layoutY="272.0" prefHeight="15.0" prefWidth="132.0" text="初始弹性模量Ec0:" />
+      <Label fx:id="label_Ec" layoutX="8.0" layoutY="249.0" prefHeight="15.0" prefWidth="134.0" text="屈服弹性模量Ec:" />
+      <Label fx:id="label_Fcr" layoutX="9.0" layoutY="225.0" prefHeight="15.0" prefWidth="134.0" text="单轴抗压强度代表值Fcr:" />
+      <Label layoutX="17.0" layoutY="197.0" prefHeight="18.0" prefWidth="88.0" text="轴心抗压参数" wrapText="true">
+         <font>
+            <Font name="SimHei" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_epsilon_cr" layoutX="211.0" layoutY="226.0" prefHeight="15.0" prefWidth="88.0" text="峰值压应变ε cr:" />
+      <Label fx:id="label_fcur" layoutX="210.0" layoutY="250.0" prefHeight="15.0" prefWidth="88.0" text="强度代表值fcur:" />
+      <TextField fx:id="text_cr" layoutX="298.0" layoutY="223.0" prefHeight="23.0" prefWidth="75.0" />
+      <TextField fx:id="text_fcur" layoutX="298.0" layoutY="247.0" prefHeight="23.0" prefWidth="75.0" />
+      <Pane fx:id="pane" layoutX="395.0" layoutY="298.0" prefHeight="229.0" prefWidth="278.0" />
+   </children>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
+</AnchorPane>
