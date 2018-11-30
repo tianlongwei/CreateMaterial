@@ -55,10 +55,10 @@ public class MyMain extends Application {
             stage_second.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                    showPage1();
+                    stage_first.show();
                 }
             });
-            this.stage_first.close();//隐藏
+            this.stage_first.hide();//隐藏
 
 
         } catch (IOException e) {
@@ -86,11 +86,10 @@ public class MyMain extends Application {
             stage_third.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                    initiaRootLayout_second();
-                    showTab1();
+                    stage_second.show();
                 }
             });
-            this.stage_second.close();//隐藏
+            this.stage_second.hide();//隐藏
 
 
         } catch (IOException e) {

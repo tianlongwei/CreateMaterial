@@ -2031,6 +2031,4 @@ public class Ding_Yu_Method {
 
         return stress_strain;
     }
-
-
 }

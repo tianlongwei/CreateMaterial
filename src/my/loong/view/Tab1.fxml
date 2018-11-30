@@ -15,7 +15,7 @@
          <font>
             <Font name="SimHei" size="14.0" />
          </font></Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="117.0" layoutX="6.0" layoutY="174.0" stroke="#b2adad" strokeType="INSIDE" width="261.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="136.0" layoutX="6.0" layoutY="174.0" stroke="#b2adad" strokeType="INSIDE" width="261.0" />
       <Label fx:id="label_demage_cal_method" layoutX="11.0" layoutY="178.0" prefHeight="15.0" prefWidth="57.0" text="几何尺寸">
          <font>
             <Font name="SimHei" size="12.0" />
@@ -42,9 +42,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="155.0" layoutY="201.0" prefHeight="23.0" prefWidth="91.0" />
-      <TextField layoutX="155.0" layoutY="228.0" prefHeight="23.0" prefWidth="91.0" />
-      <TextField layoutX="155.0" layoutY="254.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_D" layoutX="155.0" layoutY="201.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_B" layoutX="155.0" layoutY="228.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_t" layoutX="155.0" layoutY="254.0" prefHeight="23.0" prefWidth="91.0" />
       <Pane layoutX="15.0" layoutY="27.0" prefHeight="125.0" prefWidth="261.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8daca" height="70.0" layoutX="46.0" layoutY="31.0" stroke="#c8daca" strokeType="INSIDE" width="140.0" />
@@ -83,22 +83,22 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="155.0" layoutY="343.0" prefHeight="23.0" prefWidth="91.0" />
-      <TextField layoutX="155.0" layoutY="369.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_fcu" layoutX="155.0" layoutY="343.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_fy" layoutX="155.0" layoutY="369.0" prefHeight="23.0" prefWidth="91.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="180.0" layoutX="289.0" stroke="#b2adad" strokeType="INSIDE" width="393.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="346.0" layoutX="289.0" layoutY="182.0" stroke="#b2adad" strokeType="INSIDE" width="393.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5f5f5" height="51.0" layoutX="298.0" layoutY="6.0" stroke="#b2adad" strokeType="INSIDE" width="373.0" />
-      <RadioButton layoutX="346.0" layoutY="30.0" mnemonicParsing="false" text="轴压">
+      <RadioButton fx:id="radio_zhouya" layoutX="346.0" layoutY="30.0" mnemonicParsing="false" onAction="#radio_zhouya_clicked" text="轴压">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="424.0" layoutY="30.0" mnemonicParsing="false" text="纯弯">
+      <RadioButton fx:id="radio_chunwan" layoutX="424.0" layoutY="30.0" mnemonicParsing="false" onAction="#radio_chunwan_clicked" text="纯弯">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="494.0" layoutY="30.0" mnemonicParsing="false" text="压弯">
+      <RadioButton fx:id="radio_zhouwan" layoutX="494.0" layoutY="30.0" mnemonicParsing="false" onAction="#radio_zhouwan_clicked" text="压弯">
          <font>
             <Font size="14.0" />
          </font>
@@ -114,9 +114,9 @@
             <Font name="SimHei" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="475.0" layoutY="85.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_N" layoutX="475.0" layoutY="85.0" prefHeight="23.0" prefWidth="91.0" />
       <TextField layoutX="475.0" layoutY="112.0" prefHeight="23.0" prefWidth="91.0" />
-      <TextField layoutX="475.0" layoutY="139.0" prefHeight="23.0" prefWidth="91.0" />
+      <TextField fx:id="text_M" layoutX="475.0" layoutY="139.0" prefHeight="23.0" prefWidth="91.0" />
       <Label layoutX="343.0" layoutY="138.0" prefHeight="18.0" prefWidth="113.0" text="弯矩(KN.m):">
          <font>
             <Font size="14.0" />
@@ -137,7 +137,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="192.0" layoutY="478.0" mnemonicParsing="false" text="计算">
+      <Button layoutX="192.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#handled_cal" text="计算">
          <font>
             <Font size="14.0" />
          </font>
@@ -148,6 +148,12 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="text_H" layoutX="155.0" layoutY="280.0" prefHeight="23.0" prefWidth="91.0" />
+      <Label layoutX="23.0" layoutY="280.0" prefHeight="18.0" prefWidth="113.0" text="钢管长度H(mm):">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
    <rotationAxis>
       <Point3D />

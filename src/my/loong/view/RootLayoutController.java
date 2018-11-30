@@ -34,9 +34,6 @@ public class RootLayoutController {
     @FXML
     private void handledNext() throws MalformedURLException {
         index++;
-//        if (index==2){
-//            myMain.showTab2();
-//        }
         if (index==3){
             myMain.showTab3();
             return;
@@ -52,11 +49,6 @@ public class RootLayoutController {
     @FXML
     private void handledPrivous(){
         index--;
-//        if (index==1){
-//            myMain.showTab1();
-//            return;
-//        }
-        System.out.println(index);
         if (index==2){
             myMain.showTab2();
             return;
