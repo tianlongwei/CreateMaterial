@@ -71,13 +71,29 @@ public class GB_50936_Method {
     }
 
     public static void zhouya_cal(double N){
-        System.out.println("Nu:"+getNu());
-        if (N<getN0()){
+        System.out.println("N0:"+getN0());
+        if (N*1000.0<getN0()){
             System.out.println("轴压情况下，承载力满足要求");
             return;
         }
         System.out.println("轴压情况下，承载力不满足要求");
     }
+
+    public static String zhouya2str(double N){
+        String str="参数As："+getAs()+"mm²\r\n"+
+                "参数Ac："+getAc()+"mm²\r\n"+
+                "参数Asc："+getAsc()+"mm²\r\n"+
+                "参数fsc："+getFsc()+"Mpa\r\n"+
+                "参数N0："+getN0()/1000+"Kn\r\n"+
+        "*******************计算结果************************\r\n";
+        if(N<getN0()){
+            str+="在轴压情况下，验算安全";
+        }else {
+            str+="在轴压情况下，验算不安全";
+        }
+        return str;
+    }
+
 
     //计算后将计算参数返回
     public static String all_zhouya2csv(){
@@ -129,12 +145,32 @@ public class GB_50936_Method {
 
     public static void chunwan_cal(double M){
         System.out.println("Mu:"+getMu());
-        if (M<getMu()){
+        if (M*1000000.0<getMu()){
             System.out.println("在纯弯情况下，承载力满足要求");
             return;
         }
         System.out.println("在纯弯情况下，承载力不满足要求");
     }
+
+    public static String chunwan2str(double M){
+        String str="参数As："+getAs()+"mm²\r\n"+
+                "参数Ac："+getAc()+"mm²\r\n"+
+                "参数Wsc："+getWsc()+"mm³\r\n"+
+                "参数ε："+getEpsilon()+"\r\n"+
+                "参数fscy："+getFscy()+"Mpa\r\n"+
+                "参数γm："+getGamma_m()+"\r\n"+
+                "参数Mu："+getMu()/1000000+"KN.m\r\n"+
+                "*******************计算结果************************\r\n";
+        if(M*1000000<getMu()){
+            str+="在纯弯情况下，验算安全";
+        }else {
+            str+="在纯弯情况下，验算不安全";
+        }
+        return str;
+
+    }
+
+
 
     //计算后将计算参数返回
     public static String all_chunwan2csv(){
@@ -163,9 +199,11 @@ public class GB_50936_Method {
     private static double kE;
     private static double NE;
 
+    private static boolean isyawan_ok=false;
+
     //private static double N;//实际受到的轴压力
     private static double getI(){
-        i=Math.sqrt(((B-D)*Math.pow(D,3)/12+ 0.0490625*Math.pow(D,4)+Math.pow(0.212314225*D+(B-D)/2.0,2)*3.14*Math.pow(D/2.0,2))/((B-D)*D+3.14*Math.pow(D/2.0,2) ));
+        i=Math.sqrt(((B-D)*Math.pow(D,3)/12.0+ 0.0490625*Math.pow(D,4)+Math.pow(0.212314225*D+(B-D)/2.0,2)*3.14*Math.pow(D/2.0,2))/((B-D)*D+3.14*Math.pow(D/2.0,2) ));
         return i;
     }
 
@@ -195,29 +233,68 @@ public class GB_50936_Method {
     }
 
     private static double getNE() {
-        NE=11.6*kE*fsc*Asc/Math.pow(lambda_sc,2);
+        NE=11.6*getkE()*getFsc()*getAsc()/Math.pow(getLambda_sc(),2);
         return NE;
     }
 
-    public static void zhouwan_cal(double N,double M){
+    private static String res;
+    public static void zhouwan_cal(double N,double e){
+        N*=1000;//转化为N
         double val=N/getNu();
         System.out.println("val:"+val);
 
         double val1=0;
         if (val>=0.255){
-            val1=val+M/(1.5*getMu()*(1-0.4*N/getNE()));
-        }else {
-            val1=-1*N/(2.17*getNu())+M/(getMu()*(1-0.4*N/getNE()));
-        }
-        System.out.println("val1:"+val1);
+            val1=val+(N*e)/(1.5*getMu()*(1-0.4*N/getNE()));
+            res="参数N/Nu："+N/getNu()+">=0.255\r\n";
+            if (val1<=1){
+                res+="N/Nu+M/(1.5Mu(1-0.4N/NE)):"+val1+"<=1\r\n";
+                isyawan_ok=true;
+            }else {
+                res+="N/Nu+M/(1.5Mu(1-0.4N/NE)):"+val1+">1\r\n";
+                isyawan_ok=false;
+            }
 
-        if (val1<=1){
-            System.out.println("构建承载力安全");
         }else {
-            System.out.println("构建承载力不安全");
+            val1=-1*N/(2.17*getNu())+(N*e)/(getMu()*(1-0.4*N/getNE()));
+            res="参数N/Nu："+N/getNu()+"<0.255\r\n";
+
+            if (val1<=1){
+                res+="-1*N/(2.17*Nu)+M/(Mu*(1-0.4*N/NE)):"+val1+"<=1\r\n";
+                isyawan_ok=true;
+            }else {
+                res+="-1*N/(2.17*Nu)+M/(Mu*(1-0.4*N/NE)):"+val1+">1\r\n";
+                isyawan_ok=false;
+            }
         }
+        System.out.println(isyawan_ok+"-------------");
+//        if (val1<=1){
+//            System.out.println("构建承载力安全");
+//            isyawan_ok=true;
+//        }else {
+//            System.out.println("构建承载力不安全");
+//            isyawan_ok=false;
+//        }
     }
 
+    public static String yawan2str(){
+        String str="参数kE："+getkE()+"Mpa\r\n"+
+                "参数NE："+getNE()+"\r\n"+
+                "参数i："+getI()+"\r\n"+
+                "参数λsc："+getLambda_sc()+"\r\n"+
+                "参数x："+getX()+"\r\n"+
+                "参数φ："+getPhi()+"\r\n"+
+                "参数N0："+getN0()/1000+"Kn\r\n"+
+                "参数Nu："+getNu()/1000+"Kn\r\n"+
+                "*******************计算结果************************\r\n";
+        str+=res;
+        if(isyawan_ok){
+            str+="在压弯情况下，验算安全";
+        }else {
+            str+="在压弯情况下，验算不安全";
+        }
+        return str;
+    }
 
 
 

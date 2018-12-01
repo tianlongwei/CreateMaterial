@@ -6,15 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="修改页面跳转逻辑">
-      <change afterPath="$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="增加承载力验算逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my/loong/MyMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/MyMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my/loong/commons/Ding_Yu_Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/commons/Ding_Yu_Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my/loong/view/RootLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/view/RootLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my/loong/view/Tab1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/view/Tab1.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java" afterDir="false" />
     </list>
+    <list id="36f09eb5-fd5a-4329-bf9b-d17f28c21543" name="承载力验算功能" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -132,22 +130,23 @@
     <session id="-579418866">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.65" value="1" />
           <entry key="project.open.time.67" value="1" />
           <entry key="project.open.time.77" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.open.time.99" value="1" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
           <entry key="csv" value="2" />
-          <entry key="fxml" value="25" />
-          <entry key="java" value="74" />
+          <entry key="fxml" value="27" />
+          <entry key="java" value="80" />
           <entry key="md" value="2" />
           <entry key="txt" value="3" />
         </counts>
@@ -155,26 +154,26 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="74" />
+          <entry key="JAVA" value="80" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="XML" value="25" />
+          <entry key="XML" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="3" />
           <entry key="fxml" value="5" />
-          <entry key="java" value="11401" />
+          <entry key="java" value="12803" />
           <entry key="md" value="16" />
-          <entry key="txt" value="57" />
+          <entry key="txt" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11401" />
+          <entry key="JAVA" value="12803" />
           <entry key="Markdown" value="16" />
-          <entry key="PLAIN_TEXT" value="60" />
+          <entry key="PLAIN_TEXT" value="78" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -184,53 +183,15 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab3.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="110" column="16" lean-forward="true" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+            <state relative-caret-position="526">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#317#318#0" expanded="true" />
-                <element signature="e#353#354#0" expanded="true" />
-                <element signature="e#729#730#0" expanded="true" />
-                <element signature="e#775#776#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/my/loong/MyMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="157" column="43" lean-forward="true" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
-              <folding>
-                <element signature="e#1634#1635#0" expanded="true" />
-                <element signature="e#1685#1686#0" expanded="true" />
-                <element signature="e#2572#2573#0" expanded="true" />
-                <element signature="e#2631#2632#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -295,9 +256,9 @@
         <option value="$PROJECT_DIR$/src/my/loong/view/Page1Controller.java" />
         <option value="$PROJECT_DIR$/src/my/loong/commons/Ding_Yu_Method.java" />
         <option value="$PROJECT_DIR$/src/my/loong/view/RootLayoutController.java" />
-        <option value="$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java" />
-        <option value="$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java" />
         <option value="$PROJECT_DIR$/src/my/loong/MyMain.java" />
+        <option value="$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java" />
+        <option value="$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java" />
       </list>
     </option>
   </component>
@@ -309,9 +270,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="82" />
+    <option name="x" value="-35" />
+    <option name="y" value="-13" />
     <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -382,7 +344,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543570356098" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543641875279" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -510,6 +472,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <changelist id="36f09eb5-fd5a-4329-bf9b-d17f28c21543" name="承载力验算功能" comment="" />
       <created>1359379246138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -527,7 +490,8 @@
       <workItem from="1543373690589" duration="19174000" />
       <workItem from="1543455771761" duration="565000" />
       <workItem from="1543456730190" duration="26353000" />
-      <workItem from="1543558276850" duration="11988000" />
+      <workItem from="1543558276850" duration="18353000" />
+      <workItem from="1543625234277" duration="8007000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1543212935612</created>
@@ -550,17 +514,23 @@
       <option name="project" value="LOCAL" />
       <updated>1543498356799</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="增加承载力验算逻辑">
+      <created>1543570553591</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1543570553591</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92190000" />
+    <option name="totallyTimeSpent" value="106562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25869894" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18229954" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -668,7 +638,8 @@
     <MESSAGE value="第一次提交" />
     <MESSAGE value="增加韩海林与过振海本构曲线计算方法" />
     <MESSAGE value="修改页面跳转逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改页面跳转逻辑" />
+    <MESSAGE value="增加承载力验算逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加承载力验算逻辑" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -737,8 +708,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab2.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="jar://D:/jdk8/javafx-src.zip!/javafx/scene/layout/BorderPane.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -751,9 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
-          <folding>
-            <element signature="e#66921#66922#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,23 +753,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="25" column="34" lean-forward="true" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/RootLayout.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/RootLayout_second.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/MessageBox.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -811,12 +776,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/page1.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
           <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab2Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -909,52 +874,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab1.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab3.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="110" column="16" lean-forward="true" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my/loong/MyMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab1.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/commons/GB_50936_Method.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+        <state relative-caret-position="-494">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/loong/view/Tab1Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+        <state relative-caret-position="526">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#317#318#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#729#730#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my/loong/MyMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="157" column="43" lean-forward="true" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
-          <folding>
-            <element signature="e#1634#1635#0" expanded="true" />
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#2572#2573#0" expanded="true" />
-            <element signature="e#2631#2632#0" expanded="true" />
           </folding>
         </state>
       </provider>
