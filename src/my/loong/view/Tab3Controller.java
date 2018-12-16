@@ -495,7 +495,7 @@ public class Tab3Controller {
     SortedMap<Integer, ParameterValue> stress_strain_Ten = stress_strain[1];
 
 
-    SortedMap<Integer, ParameterValue>[] maps;
+    SortedMap<Integer, ParameterValue>[] maps=null;
 
     @FXML
     private void handled_buttton_cal(){
@@ -1013,6 +1013,25 @@ public class Tab3Controller {
 
     @FXML
     private void button_n_c_s_clicked(){
+        //如果不是第一次点击，则自动填入数据
+//        D=Double.valueOf(text_fcr.getText());
+//        t=Double.valueOf(text_ec.getText());
+//        B=Double.valueOf(text_cr.getText());
+//        fy=Double.valueOf(text_ec0.getText());
+//        fcu=Double.valueOf(text_fcur.getText());
+
+        if (maps!=null){
+            text_fcr.setText(String.valueOf(Han_Lin_Hai_Method.getD()));
+            text_ec.setText(String.valueOf(Han_Lin_Hai_Method.getT()));
+            text_cr.setText(String.valueOf(Han_Lin_Hai_Method.getB()));
+            text_ec0.setText(String.valueOf(Han_Lin_Hai_Method.getFy()));
+            text_fcur.setText(String.valueOf(Han_Lin_Hai_Method.getFcu()));
+        }else {
+            MessageBox.showBox("请先计算");
+            return;
+        }
+
+
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
 
