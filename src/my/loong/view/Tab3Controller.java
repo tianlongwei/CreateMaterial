@@ -72,9 +72,10 @@ public class Tab3Controller {
         radio_dingyu_method.setSelected(false);
         radio_guozhenhai_method.setSelected(false);
 
-
         hanlinhai_method_show(false);
         guozhenhai_method_show(false);
+
+        button_n_c_s.setVisible(false);
     }
     @FXML
     private void radio_dingyu_method_clicked(){
@@ -85,6 +86,8 @@ public class Tab3Controller {
 
         hanlinhai_method_show(false);
         guozhenhai_method_show(false);
+
+        button_n_c_s.setVisible(false);
     }
 
 
@@ -385,6 +388,8 @@ public class Tab3Controller {
         label_attentin2.setDisable(ishowHanhailin);
         label_shouyabengou.setDisable(ishowHanhailin);
         label_shoulabengou.setDisable(ishowHanhailin);
+
+        button_n_c_s.setVisible(ishowHanhailin);//是否显示韩林海方法
     }
 
 
@@ -462,6 +467,8 @@ public class Tab3Controller {
         label_attentin2.setDisable(ishowGuozhengai);
         label_shouyabengou.setDisable(ishowGuozhengai);
         label_shoulabengou.setDisable(ishowGuozhengai);
+
+        button_n_c_s.setVisible(!ishowGuozhengai);
     }
 
     public void clearText(){
@@ -486,6 +493,9 @@ public class Tab3Controller {
 
     SortedMap<Integer, ParameterValue> stress_strain_Comp = stress_strain[0];
     SortedMap<Integer, ParameterValue> stress_strain_Ten = stress_strain[1];
+
+
+    SortedMap<Integer, ParameterValue>[] maps;
 
     @FXML
     private void handled_buttton_cal(){
@@ -576,15 +586,23 @@ public class Tab3Controller {
             //获取数据
             SortedMap<Integer, ParameterValue> map=new TreeMap<>();
             map=Han_Lin_Hai_Method.GetStrain_stress(true);
+
+            //测试显示数据
+
+            if (radio_strength_standardValue.isSelected()){
+                maps=Han_Lin_Hai_Method.GetStress_N(true);
+            }else {
+                maps=Han_Lin_Hai_Method.GetStress_N(false);
+            }
+
+
+
             if (radio_strength_standardValue.isSelected()){
                 map=Han_Lin_Hai_Method.GetStrain_stress(true);
             }else if (radio_strength_averageValue.isSelected()){
                 map=Han_Lin_Hai_Method.GetStrain_stress(false);
             }
 
-            for (Map.Entry<Integer,ParameterValue> aa:map.entrySet()){
-                System.out.println(aa.getValue().getStrain()+":"+aa.getValue().getStress());
-            }
 
             //在pane中显示图表
             removeSeries();
@@ -899,10 +917,15 @@ public class Tab3Controller {
     public void removeSeries(){
         ObservableList<XYChart.Series<Number,Number>> data=lineChart.getData();
         if (data!=null && data.size()>0){
-            for (int i = 0; i < data.size(); i++) {
-                lineChart.getData().remove(i);
+            int size=lineChart.getData().size();
+
+            for (int i = 0; i <size; i++) {
+                lineChart.getData().remove(0);
             }
         }
+
+        //注意linchart在移除一个series后linechart大小会减小1。
+        //所以这里每次都可以移除第一个元素
     }
 
     @FXML
@@ -982,6 +1005,47 @@ public class Tab3Controller {
 
 
 
+    /***********************************************************/
+    /**********************添加应变_承载力复合曲线*****************/
+    /***********************************************************/
+    @FXML
+    private Button button_n_c_s;
+
+    @FXML
+    private void button_n_c_s_clicked(){
+        removeSeries();
+        lineChart.setCreateSymbols(false);//不显示节点符号
+
+        XYChart.Series series0 = new XYChart.Series();
+        series0.setName("stress_c");//设置图形名称
+        for (Map.Entry<Integer,ParameterValue> aa:maps[0].entrySet()) {
+            series0.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
+        }
+        lineChart.getData().add(series0);
+
+
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("stress_c_s");//设置图形名称
+        for (Map.Entry<Integer,ParameterValue> aa:maps[2].entrySet()) {
+            series2.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
+        }
+        lineChart.getData().add(series2);
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("stress_s");//设置图形名称
+        for (Map.Entry<Integer,ParameterValue> aa:maps[1].entrySet()) {
+            series1.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
+        }
+        lineChart.getData().add(series1);
+
+
+    }
+
+
+
+
+
+
     //写入文件操作
     private void writeToCsvFile(File file,String title,SortedMap<Integer,ParameterValue> data,boolean isHanOrGuo_method){
         //如果文件不存在则创建一个文件
@@ -1030,5 +1094,9 @@ public class Tab3Controller {
 
 
     }
+
+
+
+
 
 }
