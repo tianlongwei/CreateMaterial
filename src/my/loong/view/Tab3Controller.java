@@ -315,14 +315,12 @@ public class Tab3Controller {
             radio_GB50010_2010_method.setSelected(false);
             radio_guozhenhai_method.setSelected(false);
 
-            label_Fcr.setText("半圆区直径（mm）：");//单轴抗压强度代表值Fcr
-            label_Ec.setText("钢管厚度（mm）：");//屈服弹性模量Ec
-            label_Ec0.setText("钢筋屈服强度：");//初始弹性模量Ec0
-            label_epsilon_cr.setText("钢管混凝土长度:");//峰值压应变ε cr
-            label_fcur.setText("混凝土强度等级:");//强度代表值fcur
-            //text_fcur.setText();
-            //label_fcur.setVisible(false);
-            //text_fcur.setVisible(false);
+            label_Fcr.setText("截面宽度D(mm):");//单轴抗压强度代表值Fcr
+            label_Ec.setText("钢管厚度（mm）:");//屈服弹性模量Ec
+            label_Ec0.setText("钢筋屈服强度(Mpa):");//初始弹性模量Ec0
+            label_epsilon_cr.setText("截面高度B(mm):");//峰值压应变ε cr
+            label_fcur.setText("混凝土强度(Mpa):");//强度代表值fcur
+
 
             //增加形状选择
             label_strength_value.setText("选择截面形状");//选择强度代表值
@@ -404,10 +402,6 @@ public class Tab3Controller {
         }else {
             radio_guozhenhai_method.setSelected(false);
         }
-//        radio_dingyu_method.setSelected(false);
-//        radio_GB50010_2010_method.setSelected(false);
-//        radio_hanlinhai_method.setSelected(false);
-
         //
         label_source_fcuk.setDisable(ishowGuozhengai);
         radio_fcuk.setDisable(ishowGuozhengai);
@@ -930,6 +924,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_stress_strain_Comp_Chart(){
+        if (checkIsNull(stress_strain_Comp)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -943,6 +940,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_Stress_StrainInElastic_Comp_Chart(){
+        if (checkIsNull(stress_strain_Comp)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -955,6 +955,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_Damage_Strain_InElastic_Comp_Chart(){
+        if (checkIsNull(stress_strain_Comp)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -969,6 +972,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_stress_strain_Ten_Chart(){
+        if (checkIsNull(stress_strain_Ten)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -981,6 +987,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_Stress_StrainInElastic_Ten_Chart(){
+        if (checkIsNull(stress_strain_Ten)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -993,6 +1002,9 @@ public class Tab3Controller {
 
     @FXML
     private void show_Damage_Strain_InElastic_Ten_Chart(){
+        if (checkIsNull(stress_strain_Ten)){
+            return;
+        }
         removeSeries();
         lineChart.setCreateSymbols(false);//不显示节点符号
         XYChart.Series series = new XYChart.Series();
@@ -1003,6 +1015,14 @@ public class Tab3Controller {
         lineChart.getData().add(series);
     }
 
+    //显示曲线前检查map是否为空
+    public boolean checkIsNull(SortedMap<Integer,ParameterValue> map){
+        if (map==null){
+            MessageBox.showBox("请先进行计算操作");
+            return true;
+        }
+        return false;
+    }
 
 
     /***********************************************************/
@@ -1036,28 +1056,27 @@ public class Tab3Controller {
         lineChart.setCreateSymbols(false);//不显示节点符号
 
         XYChart.Series series0 = new XYChart.Series();
-        series0.setName("stress_c");//设置图形名称
+        series0.setName("混凝土");//设置图形名称
         for (Map.Entry<Integer,ParameterValue> aa:maps[0].entrySet()) {
             series0.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
         }
         lineChart.getData().add(series0);
 
-
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("stress_c_s");//设置图形名称
-        for (Map.Entry<Integer,ParameterValue> aa:maps[2].entrySet()) {
-            series2.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
-        }
-        lineChart.getData().add(series2);
-
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("stress_s");//设置图形名称
+        series1.setName("钢管");//设置图形名称
         for (Map.Entry<Integer,ParameterValue> aa:maps[1].entrySet()) {
             series1.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
         }
         lineChart.getData().add(series1);
 
 
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("钢管混凝土");//设置图形名称
+        for (Map.Entry<Integer,ParameterValue> aa:maps[2].entrySet()) {
+            series2.getData().add(new XYChart.Data(aa.getValue().strain , aa.getValue().stress/1000.0));
+        }
+        lineChart.getData().add(series2);
+        lineChart.setTitle("荷载-应变曲线");
     }
 
 

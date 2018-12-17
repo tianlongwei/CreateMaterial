@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -48,8 +49,9 @@ public class MyMain extends Application {
 
             Scene scene=new Scene(rootLayout);
             stage_second.setScene(scene);
-            stage_second.setTitle("CreateMaterial");
+            stage_second.setTitle("计算程序");
             stage_second.setResizable(false);
+            stage_second.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("logo_second.png")));
             stage_second.show();
 
             stage_second.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -79,16 +81,12 @@ public class MyMain extends Application {
 
             Scene scene=new Scene(rootLayout);
             stage_third.setScene(scene);
-            stage_third.setTitle("CreateMaterial");
+            stage_third.setTitle("计算程序");
             stage_third.setResizable(false);
+            stage_third.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("logo_third.png")));
             stage_third.show();
 
-            stage_third.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    stage_second.show();
-                }
-            });
+            stage_third.setOnCloseRequest(event -> stage_second.show());
             this.stage_second.hide();//隐藏
 
 
@@ -110,6 +108,8 @@ public class MyMain extends Application {
             Scene scene=new Scene(pane);
             stage_first.setScene(scene);
             stage_first.setResizable(false);
+            stage_first.setTitle("混凝土计算程序");
+            stage_first.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("logo_first.png")));
             stage_first.show();
 
         } catch (IOException e) {
