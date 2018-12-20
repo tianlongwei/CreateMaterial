@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.Page1Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@page1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.Page1Controller">
    <children>
       <Label layoutX="164.0" layoutY="22.0" prefHeight="48.0" prefWidth="273.0" text="混凝土构件承载力验算程序">
          <font>
