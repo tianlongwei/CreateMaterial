@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import my.loong.view.Page1Controller;
 import my.loong.view.RootLayoutController;
+import my.loong.view.RootLayout_secondController;
 import my.loong.view.Tab1Controller;
 
 import java.io.IOException;
@@ -44,12 +45,12 @@ public class MyMain extends Application {
         try {
             rootLayout=loader.load();
             //加载控制器。。
-            RootLayoutController controller=loader.getController();
+            RootLayout_secondController controller=loader.getController();
             controller.setMyMain(this);
 
             Scene scene=new Scene(rootLayout);
             stage_second.setScene(scene);
-            stage_second.setTitle("计算程序");
+            stage_second.setTitle("计算程序                          武汉理工圆端形钢管混凝土412课题组编制");
             stage_second.setResizable(false);
             stage_second.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("logo_second.png")));
             stage_second.show();
@@ -81,7 +82,7 @@ public class MyMain extends Application {
 
             Scene scene=new Scene(rootLayout);
             stage_third.setScene(scene);
-            stage_third.setTitle("计算程序");
+            stage_third.setTitle("纤维模型法计算程序                          武汉理工圆端形钢管混凝土412课题组编制");
             stage_third.setResizable(false);
             stage_third.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("logo_third.png")));
             stage_third.show();

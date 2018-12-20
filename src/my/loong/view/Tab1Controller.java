@@ -1,7 +1,6 @@
 package my.loong.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,15 +20,15 @@ public class Tab1Controller {
         this.myMain = myMain;
     }
 
-    //本构曲线计算
-    @FXML
-    private Button button_bengou_cal;
-    @FXML
-    private void button_bengou_cal_clicked(){
-        //显示本构曲线计算页面
-        myMain.initiaRootLayout_third();
-        myMain.showTab2();
-    }
+//    //本构曲线计算
+//    @FXML
+//    private Button button_bengou_cal;
+//    @FXML
+//    private void button_bengou_cal_clicked(){
+//        //显示本构曲线计算页面
+//        myMain.initiaRootLayout_third();
+//        myMain.showTab2();
+//    }
 
     @FXML
     private void initialize(){

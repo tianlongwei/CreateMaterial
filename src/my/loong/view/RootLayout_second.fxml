@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.RootLayoutController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.loong.view.RootLayout_secondController">
    <bottom>
-      <Pane prefHeight="38.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="38.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exited" layoutY="-4.0" mnemonicParsing="false" onAction="#handledExited" prefHeight="42.0" prefWidth="154.0" text="退出">
+               <font>
+                  <Font name="SimHei" size="13.0" />
+               </font></Button>
+            <Button fx:id="button_bengou_cal" layoutX="527.0" layoutY="-4.0" mnemonicParsing="false" onAction="#button_bengou_cal_clicked" prefHeight="42.0" prefWidth="154.0" text="显示本构曲线计算页面">
+               <font>
+                  <Font name="SimHei" size="13.0" />
+               </font></Button>
+         </children></Pane>
    </bottom>
 </BorderPane>

@@ -323,7 +323,7 @@ public class Tab3Controller {
 
 
             //增加形状选择
-            label_strength_value.setText("选择截面形状");//选择强度代表值
+            label_strength_value.setText("选择混凝土截面参数类型");//选择强度代表值
             radio_strength_standardValue.setText("矩形截面");//标准值
             radio_strength_averageValue.setText("圆形截面");//平均值
         }else {
